@@ -10,6 +10,8 @@ import {MaterialLoaderModule} from "./material-loader/material-loader.module";
   exports: [
     MaterialLoaderModule
   ],
-  declarations: []
+  declarations: [
+
+  ]
 })
 export class CoreModule { }
