@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MaterialImportsModule} from "./material-imports/material-imports.module";
+import {MaterialLoaderModule} from "./material-loader/material-loader.module";
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialImportsModule
+    MaterialLoaderModule
   ],
   exports: [
-    MaterialImportsModule
+    MaterialLoaderModule
   ],
   declarations: []
 })
