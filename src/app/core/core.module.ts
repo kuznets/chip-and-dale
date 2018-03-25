@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MaterialLoaderModule} from "./material-loader/material-loader.module";
+import { MaterialLoaderModule } from './material-loader/material-loader.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialLoaderModule
+    MaterialLoaderModule,
+    AuthModule
   ],
   exports: [
-    MaterialLoaderModule
+    MaterialLoaderModule,
+    AuthModule
   ],
-  declarations: []
+  declarations: [
+
+  ]
 })
 export class CoreModule { }
