@@ -10,20 +10,12 @@ import {ProfileDetailEditModule} from "./profile-detail-edit/profile-detail-edit
 @NgModule({
   imports: [
     CommonModule,
-    ProfileModule,
-    ProfileDetailComponent,
     ProfileDetailEditModule,
-    ProfileOrdersComponent,
-    ProfileWidgetComponent,
     ProfileRoutingModule
   ],
   exports: [
-    ProfileModule,
-    ProfileDetailComponent,
     ProfileDetailEditModule,
-    ProfileOrdersComponent,
-    ProfileWidgetComponent
   ],
-  declarations: [ProfileWidgetComponent, ProfileOrdersComponent]
+  declarations: [ProfileWidgetComponent, ProfileDetailComponent, ProfileOrdersComponent]
 })
 export class ProfileModule { }

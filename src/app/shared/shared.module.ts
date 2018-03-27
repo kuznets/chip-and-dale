@@ -1,28 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuthModule } from "../auth/auth.module";
-import { CatalogModule } from "../catalog/catalog.module";
-import { CartModule } from "../cart/cart.module";
-import { ProfileModule } from "../profile/profile.module";
-import { AdminModule } from "../admin/admin.module";
+import { CoreModule } from "../core/core.module";
+import { ProductsModule } from '../products/products.module';
+import { CartModule } from '../cart/cart.module';
+import { ProfileModule } from '../profile/profile.module';
+import { AdminModule } from '../admin/admin.module';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import { SearchComponent } from './components/search/search.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
+    CoreModule,
     CommonModule,
-    AuthModule,
-    CatalogModule,
+    ProductsModule,
     CartModule,
     ProfileModule,
     AdminModule
   ],
   exports: [
-    AuthModule,
-    CatalogModule,
+    ProductsModule,
     CartModule,
     ProfileModule,
-    AdminModule
+    AdminModule,
+    NavBarComponent,
+    MainMenuComponent,
+    SearchComponent,
+    FooterComponent
   ],
-  declarations: []
+  declarations: [NavBarComponent, MainMenuComponent, SearchComponent, FooterComponent]
 })
 export class SharedModule { }

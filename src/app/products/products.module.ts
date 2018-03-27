@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {CatalogRoutingModule} from "./catalog-routing.module";
-import {CatalogDetailModule} from "./catalog-detail/catalog-detail.module";
-import {CatalogDetailEditModule} from "./catalog-detail-edit/catalog-detail-edit.module";
+import {ProductsRoutingModule} from "./products-routing.module";
+import {ProductDetailModule} from "./product-detail/product-detail.module";
+import {ProductDetailEditModule} from "./product-detail-edit/product-detail-edit.module";
 import {CategoryComponent} from "./category/category.component";
 import { CategoryListComponent } from './category-list/category-list.component';
 
@@ -11,13 +11,13 @@ import { CategoryListComponent } from './category-list/category-list.component';
 @NgModule({
   imports: [
     CommonModule,
-    CatalogDetailModule,
-    CatalogDetailEditModule,
-    CatalogRoutingModule
+    ProductDetailModule,
+    ProductDetailEditModule,
+    ProductsRoutingModule
   ],
   exports: [
-    CatalogDetailModule,
-    CatalogDetailEditModule,
+    ProductDetailModule,
+    ProductDetailEditModule,
     CategoryComponent,
     CategoryListComponent
   ],
@@ -26,4 +26,4 @@ import { CategoryListComponent } from './category-list/category-list.component';
     CategoryListComponent
   ]
 })
-export class CatalogModule { }
+export class ProductsModule { }
