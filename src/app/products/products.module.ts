@@ -4,13 +4,16 @@ import { CommonModule } from '@angular/common';
 import {ProductsRoutingModule} from "./products-routing.module";
 import {ProductDetailModule} from "./product-detail/product-detail.module";
 import {ProductDetailEditModule} from "./product-detail-edit/product-detail-edit.module";
-import {CategoryComponent} from "./category/category.component";
-import { CategoryListComponent } from './category-list/category-list.component';
+import {CategoryListComponent} from "./components/category-list/category-list.component";
+import {ProductListComponent} from "./components/product-list/product-list.component";
+import { ProductsLayoutComponent } from './components/products-layout/products-layout.component';
+import {CoreModule} from "../core/core.module";
 
 
 @NgModule({
   imports: [
     CommonModule,
+    CoreModule,
     ProductDetailModule,
     ProductDetailEditModule,
     ProductsRoutingModule
@@ -18,12 +21,12 @@ import { CategoryListComponent } from './category-list/category-list.component';
   exports: [
     ProductDetailModule,
     ProductDetailEditModule,
-    CategoryComponent,
-    CategoryListComponent
+    ProductsLayoutComponent
   ],
   declarations: [
-    CategoryComponent,
-    CategoryListComponent
+    ProductListComponent,
+    CategoryListComponent,
+    ProductsLayoutComponent
   ]
 })
 export class ProductsModule { }
