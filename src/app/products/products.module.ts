@@ -8,6 +8,7 @@ import {CategoryListComponent} from "./components/category-list/category-list.co
 import {ProductListComponent} from "./components/product-list/product-list.component";
 import { ProductsLayoutComponent } from './components/products-layout/products-layout.component';
 import {CoreModule} from "../core/core.module";
+import { ProductsFiltersComponent } from './components/products-filters/products-filters.component';
 
 
 @NgModule({
@@ -21,12 +22,14 @@ import {CoreModule} from "../core/core.module";
   exports: [
     ProductDetailModule,
     ProductDetailEditModule,
-    ProductsLayoutComponent
+    ProductsLayoutComponent,
+    ProductsFiltersComponent
   ],
   declarations: [
     ProductListComponent,
     CategoryListComponent,
-    ProductsLayoutComponent
+    ProductsLayoutComponent,
+    ProductsFiltersComponent
   ]
 })
 export class ProductsModule { }
