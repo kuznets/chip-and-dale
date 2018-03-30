@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormControl} from "@angular/forms";
+import {CategoriesService} from "../../../shared/services/categories/categories.service";
 
 @Component({
   selector: 'app-products-filters',
@@ -7,26 +8,16 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./products-filters.component.scss']
 })
 export class ProductsFiltersComponent implements OnInit {
+
+  categoryList: Array<Object>;
+
   get alphabets(): Array<Object> {
     return this._alphabets;
-  }
-
-  get categoryList(): Array<Object> {
-    return this._categoryList;
   }
 
   get prices(): Array<Object> {
     return this._prices;
   }
-
-  private _categoryList: Array<Object> = [
-    {name: 'category1', link: 'category1'},
-    {name: 'category2', link: 'category2'},
-    {name: 'category3', link: 'category3'},
-    {name: 'category4', link: 'category4'},
-    {name: 'category5', link: 'category5'},
-    {name: 'category6', link: 'category6'}
-  ];
 
   private _prices: Array<Object> = [
     {name: 'category1', value: 'Price: Low to High'},
@@ -41,9 +32,10 @@ export class ProductsFiltersComponent implements OnInit {
 
   categories = new FormControl();
 
-  constructor() { }
+  constructor(private _categoriesService: CategoriesService) { }
 
   ngOnInit() {
+    this._categoriesService.categoryList.subscribe(res => this.categoryList = res);
   }
 
 }

@@ -6,8 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from "./shared/shared.module";
-import {ProductsLayoutComponent} from "./products/components/products-layout/products-layout.component";
 import {ProductsModule} from "./products/products.module";
+import {CategoriesService} from "./shared/services/categories/categories.service";
+import {ProductsService} from "./shared/services/products/products.service";
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import {ProductsModule} from "./products/products.module";
     ProductsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CategoriesService, ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
