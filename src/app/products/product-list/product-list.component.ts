@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsService} from "../../../shared/services/products/products.service";
+import {ProductsService} from "../../shared/services/products/products.service";
 
 @Component({
   selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  templateUrl: 'product-list.component.html',
+  styleUrls: ['product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
 
   public limit: number;
   public pages: number;
 
-  productList: Array<Object>;
+  productList: any[];
 
   constructor(private _productsService: ProductsService) { }
 

@@ -2,20 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
-import { ProfileWidgetComponent } from './components/profile-widget/profile-widget.component';
-import { ProfileOrdersComponent } from './components/profile-orders/profile-orders.component';
-import {ProfileDetailComponent} from "./components/profile-detail/profile-detail.component";
-import {ProfileDetailEditModule} from "./components/profile-detail-edit/profile-detail-edit.module";
+import { ProfileWidgetComponent } from './profile-widget/profile-widget.component';
+import { ProfileOrdersComponent } from './profile-orders/profile-orders.component';
+import { ProfileComponent } from './profile.component';
+import {ProfileEditModule} from "./profile-edit/profile-edit.module";
 
 @NgModule({
   imports: [
     CommonModule,
-    ProfileDetailEditModule,
+    ProfileEditModule,
     ProfileRoutingModule
   ],
   exports: [
-    ProfileDetailEditModule,
+    ProfileEditModule,
   ],
-  declarations: [ProfileWidgetComponent, ProfileDetailComponent, ProfileOrdersComponent]
+  declarations: [
+    ProfileWidgetComponent,
+    ProfileOrdersComponent,
+    ProfileComponent
+  ]
 })
 export class ProfileModule { }

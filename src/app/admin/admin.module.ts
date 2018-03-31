@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import {AdminComponent} from "./admin.component";
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule
   ],
-  declarations: [AdminPageComponent]
+  declarations: [AdminComponent]
 })
 export class AdminModule { }

@@ -30,6 +30,11 @@ import { FooterComponent } from './components/footer/footer.component';
     SearchComponent,
     FooterComponent
   ],
-  declarations: [NavBarComponent, MainMenuComponent, SearchComponent, FooterComponent]
+  declarations: [
+    NavBarComponent,
+    MainMenuComponent,
+    SearchComponent,
+    FooterComponent
+  ]
 })
 export class SharedModule { }

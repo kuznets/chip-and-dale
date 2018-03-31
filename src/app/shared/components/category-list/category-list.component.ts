@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoriesService} from "../../../shared/services/categories/categories.service";
+import {CategoriesService} from "../../services/categories/categories.service";
 
 @Component({
   selector: 'app-category-list',
-  templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss']
+  templateUrl: 'category-list.component.html',
+  styleUrls: ['category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
 
-  categoryList: Array<Object>;
+  categoryList: any[];
 
   constructor(private _categoriesService: CategoriesService) { }
 
