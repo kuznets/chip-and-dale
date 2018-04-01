@@ -1,0 +1,28 @@
+<!--<mat-form-field>-->
+  <!--<mat-select placeholder="Categories" [formControl]="categories" multiple>-->
+    <!--<mat-option *ngFor="let category of categoryList" [value]="category">{{category.name}}</mat-option>-->
+  <!--</mat-select>-->
+<!--</mat-form-field>-->
+
+<mat-form-field>
+  <mat-select placeholder="Categories">
+    <mat-option *ngFor="let category of categoryList" [value]="category.name">
+      {{ category.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-select placeholder="Price">
+    <mat-option *ngFor="let price of prices" [value]="price.value">
+      {{ price.value }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-select placeholder="ABC">
+    <mat-option *ngFor="let alphabet of alphabets" [value]="alphabet.value">
+      {{ alphabet.value }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
