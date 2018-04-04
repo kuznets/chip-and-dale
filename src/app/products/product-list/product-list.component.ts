@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsService} from "../../shared/services/products/products.service";
+import { Product } from '../product.interface';
+import {products} from '../products.enum';
 
 @Component({
   selector: 'app-product-list',
@@ -10,13 +11,11 @@ export class ProductListComponent implements OnInit {
 
   public limit: number;
   public pages: number;
+  public productList: Product[] = products;
 
-  productList: any[];
-
-  constructor(private _productsService: ProductsService) { }
+  constructor() {}
 
   ngOnInit() {
-    this._productsService.productList.subscribe(res => this.productList = res);
     this.limit = 10;
     this.pages = this.productList.length/this.limit;
   }
