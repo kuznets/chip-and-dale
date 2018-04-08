@@ -14,11 +14,9 @@ export class SigninComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   login() {
     localStorage.setItem('email', this.email.value);
   }
-
 }
