@@ -1,17 +1,15 @@
 <div *ngIf="product">
   <mat-card class="product-card">
-  <mat-card-header>
-  <mat-card-title><a [routerLink]="['/product', product.slug]">{{ product.name }}</a></mat-card-title>
-  <mat-card-subtitle>Категория: {{ product.category }}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image [src]="product.img" [alt]="product.name" [title]="product.name">
-  <mat-card-content>
-  <p>
-  Чип и Деил
-  </p>
-  <div class="price">{{ product.price }}$</div>
-  <button mat-raised-button color="accent">Add to card</button>
-  </mat-card-content>
+    <mat-card-header>
+      <mat-card-title><a [routerLink]="['/product', product.slug]">{{ product.name }}</a></mat-card-title>
+      <mat-card-subtitle>Категория: {{ product.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="product.img" [alt]="product.name" [title]="product.name">
+    <mat-card-content>
+      <p>Чип и Деи</p>
+      <div class="price">{{ product.price }}$</div>
+      <button mat-raised-button color="accent">Add to card</button>
+    </mat-card-content>
   </mat-card>
 </div>
 

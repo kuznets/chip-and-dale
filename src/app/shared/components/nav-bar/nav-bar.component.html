@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="nav-bar" color="primary">
   <div class="logo">
     <a href="/">
       <img src="https://orig00.deviantart.net/2479/f/2010/355/1/d/rescue_rangers_logo_by_doctor_g-d35d5pl.png" alt="">
@@ -6,5 +6,8 @@
   </div>
   <app-main-menu></app-main-menu>
   <app-search></app-search>
-  <button mat-button><a href="/cart">Cart</a></button>
+  <div class="nb-right">
+    <button mat-button (click)="signIn()">Sing In</button>
+    <button mat-button><a routerLink="cart">Cart</a></button>
+  </div>
 </mat-toolbar>

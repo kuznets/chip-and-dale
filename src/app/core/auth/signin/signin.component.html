@@ -1,3 +1,10 @@
-<p>
-  signin works!
-</p>
+<div class="container">
+  <h3>Login into your account.</h3>
+  <mat-form-field>
+    <input matInput [formControl]="email" placeholder="Email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [formControl]="password" placeholder="Password">
+  </mat-form-field>
+  <button mat-raised-button color="primay" (click)="login()">Войти</button>
+</div>
