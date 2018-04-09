@@ -10,6 +10,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ProductsModule,
     CartModule,
     ProfileModule,
-    AdminModule
+    AdminModule,
+    RouterModule
   ],
   exports: [
     ProductsModule,
