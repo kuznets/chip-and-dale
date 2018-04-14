@@ -6,6 +6,7 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import {MaterialLoaderModule} from "../material-loader/material-loader.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {AuthService} from "./auth.service";
 
 @NgModule({
   imports: [
@@ -18,6 +19,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     SigninComponent,
     SignupComponent
   ],
-  entryComponents: [SigninComponent]
+  providers: [
+    AuthService
+  ],
+  entryComponents: [
+    SigninComponent,
+    SignupComponent
+  ]
 })
 export class AuthModule { }
