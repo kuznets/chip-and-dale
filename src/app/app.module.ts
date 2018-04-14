@@ -4,11 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import {CoreModule} from './core/core.module';
-import {SharedModule} from "./shared/shared.module";
-import {ProductsModule} from "./products/products.module";
-import {CategoriesService} from "./shared/services/categories/categories.service";
-import {ProductsService} from "./shared/services/products/products.service";
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { ProductsModule } from './products/products.module';
 
 
 @NgModule({
@@ -22,7 +20,7 @@ import {ProductsService} from "./shared/services/products/products.service";
     ProductsModule,
     AppRoutingModule
   ],
-  providers: [CategoriesService, ProductsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
