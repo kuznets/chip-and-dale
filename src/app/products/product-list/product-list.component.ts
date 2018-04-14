@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.limit = 10;
-    this.pages = this.productList.length/this.limit;
+    this.pages = this.productList.length / this.limit;
   }
 
 }
