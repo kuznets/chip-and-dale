@@ -1,4 +1,4 @@
-import {Cart} from "./cart.interface";
+import { Cart } from './cart.interface';
 
 export const cart: Cart[] = [
   {name: 'product1', slug: 'product1', price: 900, amount: 1},

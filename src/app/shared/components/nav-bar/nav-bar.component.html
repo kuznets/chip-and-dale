@@ -7,7 +7,21 @@
   <app-main-menu></app-main-menu>
   <app-search></app-search>
   <div class="nb-right">
+    <!--
+    TODO ПОЧЕМУ НЕ РАБОТАЕТ?
+    <ng-container *ngIf="user; then userBlock else authButtons">
+      <ng-template #userBlock>
+        Hi, <button mat-raised-button color="accent">{{ user.name }}</button>
+      </ng-template>
+      <ng-template #authButtons>
+        <button mat-button (click)="signIn()">Sing In</button>
+        <button mat-button (click)="signUp()">Sing Up</button>
+      </ng-template>
+    </ng-container>-->
+
     <button mat-button (click)="signIn()">Sing In</button>
-    <button mat-button><a routerLink="cart">Cart</a></button>
+    <button mat-button (click)="signUp()">Sing Up</button>
+
+    <button mat-button routerLink="cart">Cart</button>
   </div>
 </mat-toolbar>

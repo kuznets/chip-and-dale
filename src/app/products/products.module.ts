@@ -33,6 +33,9 @@ import { ProductsService } from './products.service';
     ProductsComponent,
     ProductsFiltersComponent
   ],
-  providers: [CategoriesService, ProductsService]
+  providers: [
+    CategoriesService,
+    ProductsService
+  ]
 })
 export class ProductsModule { }
