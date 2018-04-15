@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { ProductsModule } from './products/products.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
-import { ApiWorkerService } from './api-worker.service';
+import { HttpService } from './api-worker.service';
 import { FormsModule } from '@angular/forms';
 
 
@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     LocalStorageService,
-    ApiWorkerService
+    HttpService
   ],
   bootstrap: [AppComponent]
 })

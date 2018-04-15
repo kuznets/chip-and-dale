@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import {ApiWorkerService} from '../../api-worker.service';
+import {HttpService} from '../../api-worker.service';
 import {LocalStorageService} from '../../local-storage.service';
 
 
 @Injectable()
 export class AuthService {
 
-  constructor(private apiWorkerService: ApiWorkerService, private lc: LocalStorageService) { }
+  constructor(private httpService: HttpService, private lc: LocalStorageService) { }
 
   public signin(data: object) {
-    this.apiWorkerService.postData('/api/signin', null, data).subscribe(
+    this.httpService.postData('/api/signin', null, data).subscribe(
       res => {
         this.lc.setItem('user', res);
       },
@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   public signup(data: object) {
-    this.apiWorkerService.postData('/api/signup', null, data).subscribe(
+    this.httpService.postData('/api/signup', null, data).subscribe(
       res => {
         this.lc.setItem('user', res);
       },

@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ApiWorkerService } from '../api-worker.service';
+import { HttpService } from '../api-worker.service';
 import { Products } from './product.enum';
 
 @Injectable()
 export class ProductsService {
 
-  constructor(private apiWorkerService: ApiWorkerService) { }
+  constructor(private httpService: HttpService) { }
 
   getProductList() {
-    // return this.apiWorkerService.getData('/api/product');
+    // return this.httpService.getData('/api/product');
     return Products;
   }
 
   addProduct(data: object) {
-    return this.apiWorkerService.postData('/api/product', null, data);
+    return this.httpService.postData('/api/product', null, data);
   }
 
   removeProduct(data: object) {
-    return this.apiWorkerService.deleteData('/api/product', data);
+    return this.httpService.deleteData('/api/product', data);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class ApiWorkerService {
+export class HttpService {
 
   constructor(private httpCli: HttpClient) {}
 
