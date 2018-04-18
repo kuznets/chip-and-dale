@@ -1,6 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {FormControl} from "@angular/forms";
-import {CategoriesService} from "../../shared/services/categories/categories.service";
+import { Component, OnInit, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { CategoriesService } from '../../categories/categories.service';
+import { Category } from '../../categories/category.interface';
 
 @Component({
   selector: 'app-products-filters',
@@ -9,7 +10,7 @@ import {CategoriesService} from "../../shared/services/categories/categories.ser
 })
 export class ProductsFiltersComponent implements OnInit {
 
-  categoryList: any[];
+  public categoryList: Category[];
 
   get alphabets(): Array<Object> {
     return this._alphabets;
@@ -31,10 +32,10 @@ export class ProductsFiltersComponent implements OnInit {
 
   categories = new FormControl();
 
-  constructor(private _categoriesService: CategoriesService) { }
-
-  ngOnInit() {
-    this._categoriesService.categoryList.subscribe(res => this.categoryList = res);
+  constructor(private categoriesService: CategoriesService) {
+    this.categoryList = this.categoriesService.categories;
   }
+
+  ngOnInit() {}
 
 }

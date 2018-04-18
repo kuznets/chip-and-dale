@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../product.interface";
-import {products} from "../products.enum";
-import {ActivatedRoute} from "@angular/router";
+import { Product } from '../product.interface';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,10 +10,14 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProductDetailComponent implements OnInit {
 
-  public productList: Product[] = products;
+  public productList: Product[];
   public product: Product;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productsService: ProductsService) {
+      this.productList = this.productsService.getProductList();
+    }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {

@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import {CoreModule} from './core/core.module';
-import {SharedModule} from "./shared/shared.module";
-import {ProductsModule} from "./products/products.module";
-import {CategoriesService} from "./shared/services/categories/categories.service";
-import {ProductsService} from "./shared/services/products/products.service";
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { ProductsModule } from './products/products.module';
+import { HttpClientModule } from '@angular/common/http';
+import { LocalStorageService } from './local-storage.service';
+import { HttpService } from './api-worker.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,12 +19,17 @@ import {ProductsService} from "./shared/services/products/products.service";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     CoreModule,
     SharedModule,
     ProductsModule,
     AppRoutingModule
   ],
-  providers: [CategoriesService, ProductsService],
+  providers: [
+    LocalStorageService,
+    HttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

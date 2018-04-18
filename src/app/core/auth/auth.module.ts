@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import {MaterialLoaderModule} from "../material-loader/material-loader.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import { MaterialLoaderModule } from '../material-loader/material-loader.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UsersService } from '../../users/users.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   imports: [
@@ -18,6 +20,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     SigninComponent,
     SignupComponent
   ],
-  entryComponents: [SigninComponent]
+  providers: [
+    AuthService
+  ],
+  entryComponents: [
+    SigninComponent,
+    SignupComponent
+  ]
 })
 export class AuthModule { }
