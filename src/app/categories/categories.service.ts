@@ -13,12 +13,12 @@ export class CategoriesService {
   }
 
   private _categories: Category[] = [
-    { name: 'category1', link: 'category1' },
-    { name: 'category2', link: 'category2' },
-    { name: 'category3', link: 'category3' },
-    { name: 'category4', link: 'category4' },
-    { name: 'category5', link: 'category5' },
-    { name: 'category6', link: 'category6' },
+    { name: 'category1', slug: 'category1' },
+    { name: 'category2', slug: 'category2' },
+    { name: 'category3', slug: 'category3' },
+    { name: 'category4', slug: 'category4' },
+    { name: 'category5', slug: 'category5' },
+    { name: 'category6', slug: 'category6' },
   ];
 
 constructor() { }

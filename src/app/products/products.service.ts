@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from '../api-worker.service';
+import { HttpService } from '../http.service';
 import { Products } from './product.enum';
 
 @Injectable()

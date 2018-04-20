@@ -9,8 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { ProductsModule } from './products/products.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
-import { HttpService } from './api-worker.service';
+import { HttpService } from "./http.service";
 import { FormsModule } from '@angular/forms';
+import { CategoriesModule } from "./categories/categories.module";
 
 
 @NgModule({
@@ -23,8 +24,11 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     CoreModule,
     SharedModule,
+    CategoriesModule,
     ProductsModule,
     AppRoutingModule
+  ],
+  exports: [
   ],
   providers: [
     LocalStorageService,

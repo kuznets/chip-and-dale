@@ -1,5 +1,5 @@
 <mat-list>
   <mat-list-item *ngFor="let category of categoryList">
-    <a [href]="category.slug">{{category.name}}</a>
+    <a [routerLink]="['/category', category.slug]">{{category.name}}</a>
   </mat-list-item>
 </mat-list>
