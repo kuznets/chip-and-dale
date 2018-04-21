@@ -17,7 +17,7 @@ import { CategoriesModule } from "../categories/categories.module";
   imports: [
     CommonModule,
     CoreModule,
-    CategoriesModule,
+    //CategoriesModule,
     ProductDetailModule,
     ProductDetailEditModule,
     ProductsRoutingModule,
