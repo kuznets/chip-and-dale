@@ -14,20 +14,13 @@ export class CatalogComponent implements OnInit {
   public categoryList: Category[] = [];
   public categories_selector = new FormControl();
 
-  get alphabets(): Array<Object> {
-    return this._alphabets;
-  }
 
-  get prices(): Array<Object> {
-    return this._prices;
-  }
-
-  private _prices: Array<Object> = [
+  public prices: Array<Object> = [
     {name: 'category1', value: 'Price: Low to High'},
     {name: 'category2', value: 'Price: High to Low'}
   ];
 
-  private _alphabets: Array<Object> = [
+  public alphabets: Array<Object> = [
     {name: 'category1', value: 'a-z'},
     {name: 'category2', value: 'z-a'}
   ];

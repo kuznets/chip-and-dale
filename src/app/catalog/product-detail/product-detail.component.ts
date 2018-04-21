@@ -23,10 +23,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe((params: any) => {
       this.catalogService.products$
-        .do((product: Product) => {
+        .filter(item => item.slug === params.slug)
+        .subscribe((product: Product) => {
           this.product = product;
-        })
-        .subscribe();
+        });
     });
     this.catalogService.getProductList();
   }

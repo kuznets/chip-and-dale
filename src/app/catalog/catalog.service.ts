@@ -17,6 +17,7 @@ export class CatalogService {
 
   public categories$: Subject<Category> = new Subject();
   public products$: Subject<Product> = new Subject();
+
   getCategories() {
     return this._categories.forEach(el => this.categories$.next(el));
   }

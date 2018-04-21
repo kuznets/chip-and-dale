@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnChanges, OnDestroy, OnInit } from "@angular/core";
 import { Product } from '../products.interface';
 import { CatalogService } from "../catalog.service";
 import { Subscription } from "rxjs/Subscription";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, NavigationStart, RoutesRecognized, Router } from "@angular/router";
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/let';
 
 @Component({
   selector: 'app-list',
@@ -13,19 +14,21 @@ import 'rxjs/add/operator/do';
 })
 export class ListComponent implements OnInit, OnDestroy {
 
-  private sub: Subscription;
+  private subs: Subscription[] = [];
   public productList: Product[] = [];
   //public product: Product;
 
-  constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService) {}
+  constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService, private router: Router) {
+    this.subs[0] = this.router.events
+      .filter(event => event instanceof NavigationStart)
+      .subscribe(() => this.productList = []);
+  }
 
   ngOnInit() {
-    this.sub = this.activatedRoute.params.subscribe((params: any) => {
+    this.subs[1] = this.activatedRoute.params.subscribe((params: any) => {
       if(params.slug) {
         this.catalogService.products$
-          .filter(item => {
-            item.category_id === params.slug
-          })
+          .filter(item => item.category_id === Number(params.slug))
           .do((products: Product) => {
             this.productList.push(products);
           })
@@ -37,12 +40,12 @@ export class ListComponent implements OnInit, OnDestroy {
           })
           .subscribe();
       }
-    });
 
-    this.catalogService.getProductList();
+      this.catalogService.getProductList();
+    });
   }
 
   ngOnDestroy() {
-    //this.sub.unsubscribe();
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 }
