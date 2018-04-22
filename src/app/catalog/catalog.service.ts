@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import { Product } from "./products.interface";
 import { Subject } from "rxjs/Subject";
 import { Categories } from "./category.enum";
+import 'rxjs/add/observable/from';
 
 @Injectable()
 export class CatalogService {
@@ -15,20 +16,20 @@ export class CatalogService {
   private _categories: Category[] = Categories;
   private _products:   Product[] = Products;
 
-  public categories$: Subject<Category> = new Subject();
-  public products$: Subject<Product> = new Subject();
+  public categories$ = Observable.from(this._categories);
+  public products$ = Observable.from(this._products);
 
   getCategories() {
-    return this._categories.forEach(el => this.categories$.next(el));
+    return this.categories$
   }
 
-  addCategories(category: Category) {
-    this.categories$.next(category);
-  }
+  // addCategories(category: Category) {
+  //   this.categories$.next(category);
+  // }
 
   getProductList() {
     // return this.httpService.getData('/api/product');
-    return this._products.forEach(el => this.products$.next(el));
+    return this.products$;
   }
 
   addProduct(data: object) {

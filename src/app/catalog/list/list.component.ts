@@ -2,7 +2,7 @@ import { Component, OnChanges, OnDestroy, OnInit } from "@angular/core";
 import { Product } from '../products.interface';
 import { CatalogService } from "../catalog.service";
 import { Subscription } from "rxjs/Subscription";
-import { ActivatedRoute, NavigationEnd, NavigationStart, RoutesRecognized, Router } from "@angular/router";
+import { ActivatedRoute, NavigationStart, Router } from "@angular/router";
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
@@ -19,30 +19,34 @@ export class ListComponent implements OnInit, OnDestroy {
   //public product: Product;
 
   constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService, private router: Router) {
-    this.subs[0] = this.router.events
-      .filter(event => event instanceof NavigationStart)
-      .subscribe(() => this.productList = []);
+    this.subs.push(
+      this.router.events
+        .filter(event => event instanceof NavigationStart)
+        .subscribe(() => this.productList = [])
+    );
   }
 
   ngOnInit() {
-    this.subs[1] = this.activatedRoute.params.subscribe((params: any) => {
-      if(params.slug) {
-        this.catalogService.products$
-          .filter(item => item.category_id === Number(params.slug))
-          .do((products: Product) => {
-            this.productList.push(products);
-          })
-          .subscribe();
-      } else {
-        this.catalogService.products$
-          .do((products: Product) => {
-            this.productList.push(products);
-          })
-          .subscribe();
-      }
+    this.subs.push(
+      this.activatedRoute.params.subscribe((params: any) => {
+        if (params.slug) {
+          this.catalogService.products$
+            .filter(item => item.category_id === Number(params.slug))
+            .do((products: Product) => {
+              this.productList.push(products);
+            })
+            .subscribe();
+        } else {
+          this.catalogService.products$
+            .do((products: Product) => {
+              this.productList.push(products);
+            })
+            .subscribe();
+        }
 
-      this.catalogService.getProductList();
-    });
+        this.catalogService.getProductList();
+      })
+    );
   }
 
   ngOnDestroy() {
