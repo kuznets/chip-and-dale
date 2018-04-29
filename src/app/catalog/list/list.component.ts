@@ -29,21 +29,21 @@ export class ListComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.activatedRoute.params.subscribe((params: any) => {
         if (params.slug) {
-          this.catalogService.products$
+          this.catalogService.getProductList()
             .filter(item => item.category_id === Number(params.slug))
             .do((products: Product) => {
               this.productList.push(products);
             })
             .subscribe();
         } else {
-          this.catalogService.products$
-            .do((products: Product) => {
+          this.catalogService.getProductList()
+            .do((products) => {
               this.productList.push(products);
             })
             .subscribe();
         }
 
-        this.catalogService.getProductList();
+        //this.catalogService.getProductList();
       })
     );
   }
@@ -52,3 +52,4 @@ export class ListComponent implements OnInit, OnDestroy {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 }
+

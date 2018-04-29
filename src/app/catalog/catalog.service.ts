@@ -11,25 +11,24 @@ import 'rxjs/add/observable/from';
 @Injectable()
 export class CatalogService {
 
-  constructor(private httpService: HttpService) { }
-
   private _categories: Category[] = Categories;
   private _products:   Product[] = Products;
 
-  public categories$ = Observable.from(this._categories);
-  public products$ = Observable.from(this._products);
+  public categories$: Subject<Category> = new Subject();
+  public products$: Observable<any>;
+
+  constructor(private httpService: HttpService) { }
 
   getCategories() {
-    return this.categories$
+    return this._categories.forEach(el => this.categories$.next(el));
   }
 
-  // addCategories(category: Category) {
-  //   this.categories$.next(category);
-  // }
+  addCategories(category: Category) {
+    //this.categories$.next(category);
+  }
 
   getProductList() {
-    // return this.httpService.getData('/api/product');
-    return this.products$;
+    return Observable.from(this._products);
   }
 
   addProduct(data: object) {
