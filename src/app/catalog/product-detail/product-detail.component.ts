@@ -15,20 +15,18 @@ import 'rxjs/add/operator/do';
 export class ProductDetailComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
-  public productList: Product[];
   public product: Product;
 
   constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService) {}
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe((params: any) => {
-      this.catalogService.products$
+      this.catalogService.getProductList()
         .filter(item => item.slug === params.slug)
         .subscribe((product: Product) => {
           this.product = product;
         });
     });
-    this.catalogService.getProductList();
   }
 
   ngOnDestroy() {

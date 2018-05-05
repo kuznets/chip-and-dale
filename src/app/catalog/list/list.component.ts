@@ -15,7 +15,6 @@ export class ListComponent implements OnInit, OnDestroy {
 
   private subs: Subscription[] = [];
   public productList: Product[] = [];
-  //public product: Product;
 
   constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService, private router: Router) {
     this.subs.push(
@@ -42,8 +41,6 @@ export class ListComponent implements OnInit, OnDestroy {
             })
             .subscribe();
         }
-
-        //this.catalogService.getProductList();
       })
     );
   }
