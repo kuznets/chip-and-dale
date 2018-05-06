@@ -1,2 +1,10 @@
-<input matInput placeholder="Search" >
-<mat-icon>search</mat-icon>
+<mat-form-field>
+  <input matInput [formControl]="searchData" type="text" placeholder="Search" [matAutocomplete]="auto">
+  <mat-icon>search</mat-icon>
+</mat-form-field>
+
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let result of resultSearch">
+    <a [routerLink]="['/product', result.slug]">{{ result.name }}</a>
+  </mat-option>
+</mat-autocomplete>
