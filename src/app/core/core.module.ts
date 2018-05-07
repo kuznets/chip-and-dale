@@ -4,6 +4,8 @@ import { MaterialLoaderModule } from './material-loader/material-loader.module';
 import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { LocalStorageService } from './local-storage.service';
+import { HttpService } from './http.service';
 
 @NgModule({
   imports: [
@@ -19,7 +21,10 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   declarations: [
-
-  ]
+  ],
+  providers: [
+    LocalStorageService,
+    HttpService
+  ],
 })
 export class CoreModule { }

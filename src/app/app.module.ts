@@ -8,15 +8,10 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { LocalStorageService } from './local-storage.service';
-import { HttpService } from "./http.service";
-import { CatalogModule } from "./catalog/catalog.module";
+import { CatalogModule } from './catalog/catalog.module';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -28,9 +23,10 @@ import { CatalogModule } from "./catalog/catalog.module";
   ],
   exports: [
   ],
+  declarations: [
+    AppComponent,
+  ],
   providers: [
-    LocalStorageService,
-    HttpService
   ],
   bootstrap: [AppComponent]
 })

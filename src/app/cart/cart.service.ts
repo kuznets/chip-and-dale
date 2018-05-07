@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from '../local-storage.service';
-import { HttpService } from "../http.service";
+import { LocalStorageService } from '../core/local-storage.service';
+import { HttpService } from '../core/http.service';
 import { cart } from './cart.enum';
 
 @Injectable()

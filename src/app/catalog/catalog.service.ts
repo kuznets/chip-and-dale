@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Category } from "./category.interface";
-import { HttpService } from "../http.service";
-import { Products } from "./products.enum";
-import { Observable } from "rxjs/Observable";
-import { Product } from "./products.interface";
-import { Subject } from "rxjs/Subject";
-import { Categories } from "./category.enum";
+import { Category } from './category.interface';
+import { HttpService } from '../core/http.service';
+import { Products } from './products.enum';
+import { Observable } from 'rxjs/Observable';
+import { Product } from './products.interface';
+import { Subject } from 'rxjs/Subject';
+import { Categories } from './category.enum';
 import 'rxjs/add/observable/from';
 
 @Injectable()
@@ -24,7 +24,7 @@ export class CatalogService {
   }
 
   addCategories(category: Category) {
-    //this.categories$.next(category);
+    // this.categories$.next(category);
   }
 
   getProductList() {
