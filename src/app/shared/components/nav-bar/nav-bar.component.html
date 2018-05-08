@@ -8,7 +8,8 @@
   <app-search></app-search>
   <div class="nb-right">
     <ng-container *ngIf="user; else authButtons">
-        Hi, <button mat-raised-button color="accent">{{ user.name }}</button>
+        Hi, <button mat-raised-button color="accent">{{ user.email }}</button>
+        <button mat-button (click)="Logout()">Logout</button>
     </ng-container>
     <ng-template #authButtons>
       <button mat-button (click)="signIn()">Sing In</button>

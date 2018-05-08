@@ -22,7 +22,6 @@ export class NavBarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.user = this.auth.getUserInfo();
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -33,8 +32,13 @@ export class NavBarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.user = this.auth.getUserInfo();
-      console.log(`Dialog result: ${result}`);
+      console.log(`(signUp) Dialog result: ${result}`);
     });
+  }
+
+  Logout() {
+    this.user = false;
+    this.auth.logout();
   }
 
   checkUser() {
