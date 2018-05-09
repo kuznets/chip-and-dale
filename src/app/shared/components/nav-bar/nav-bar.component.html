@@ -1,4 +1,4 @@
-<mat-toolbar class="nav-bar" color="primary">
+<mat-toolbar class="nav-bar" color="primary" xmlns="http://www.w3.org/1999/html">
   <div class="logo">
     <a routerLink="/">
       <img src="https://orig00.deviantart.net/2479/f/2010/355/1/d/rescue_rangers_logo_by_doctor_g-d35d5pl.png" alt="">
@@ -16,12 +16,6 @@
       <button mat-button (click)="signUp()">Sing Up</button>
     </ng-template>
 
-    <!--
-    TODO ПОЧЕМУ НЕ РАБОТАЕТ?
-    <button mat-button (click)="signIn()">Sing In</button>
-    <button mat-button (click)="signUp()">Sing Up</button>
-    -->
-
-    <button mat-button routerLink="cart">Cart</button>
+    <button mat-button routerLink="cart"><div class="bage" *ngIf="cartCount > 0">{{cartCount}}</div>Cart</button>
   </div>
 </mat-toolbar>

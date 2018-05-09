@@ -12,25 +12,11 @@ export class AuthService {
   constructor(private httpService: HttpService, private lc: LocalStorageService) { }
 
   public signin(data: object) {
-    this.httpService.postData(this.apiURL + '/api/token', data, {}).subscribe(
-      (res: any) => {
-        this.lc.setItem('user', res.user);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    return this.httpService.postData(this.apiURL + '/api/token', data, {});
   }
 
   public signup(data: object) {
-    this.httpService.postData('/api/signup', null, data).subscribe(
-      res => {
-        this.lc.setItem('user', res);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    return this.httpService.postData(this.apiURL + '/api/signup', data, {});
   }
 
   public getUserInfo() {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormControl } from '@angular/forms';
+import { LocalStorageService } from "../../local-storage.service";
+import { MatDialogRef } from "@angular/material";
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +17,7 @@ export class SignupComponent implements OnInit {
   public name: FormControl = new FormControl();
   public city: FormControl = new FormControl();
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private lc: LocalStorageService, public matDialogRef: MatDialogRef<SignupComponent>) { }
 
   ngOnInit() {
   }
@@ -26,6 +28,14 @@ export class SignupComponent implements OnInit {
       password: this.password.value,
       name: this.name.value,
       city: this.city.value
-    });
+    }).subscribe(
+      res => {
+        this.lc.setItem('user', res);
+        this.matDialogRef.close();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

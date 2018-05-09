@@ -5,6 +5,8 @@ import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute, NavigationStart, Router } from "@angular/router";
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/do';
+import { CartService } from "../../cart/cart.service";
+import { Cart } from "../../cart/cart.interface";
 
 @Component({
   selector: 'app-list',
@@ -16,7 +18,7 @@ export class ListComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
   public productList: Product[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService, private cart: CartService, private router: Router) {
     this.subs.push(
       this.router.events
         .filter(event => event instanceof NavigationStart)
@@ -47,6 +49,14 @@ export class ListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
+  }
+
+  addItemToCard(data: Cart) {
+    this.cart.addToCard(data);
+  }
+
+  delItemFromCard(data: Cart) {
+    this.cart.addToCard(data);
   }
 }
 
