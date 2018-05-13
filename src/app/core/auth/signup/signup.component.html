@@ -1,16 +1,23 @@
 <div class="container">
   <h3>Create account.</h3>
-  <mat-form-field>
-    <input matInput [formControl]="name" placeholder="Name">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput [formControl]="city" placeholder="City">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput [formControl]="email" placeholder="Email">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput [formControl]="password" placeholder="Password">
-  </mat-form-field>
-  <button mat-raised-button color="primay" (click)="signUp()">Регистрация</button>
+  <form [formGroup]="regForm" (submit)="signUp()" *ngIf="!spinnerShow">
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Name" type="text" required>
+      <mat-error *ngIf="regForm.controls.name.hasError('required')">Name is empty</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="city" placeholder="City" type="text" required>
+      <mat-error *ngIf="regForm.controls.city.hasError('required')">City is empty</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="email" placeholder="Email" type="email" required>
+      <mat-error *ngIf="regForm.controls.email.hasError('required')">Error validation Email</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="password" placeholder="Password" type="password" required>
+      <mat-error *ngIf="regForm.controls.password.hasError('required')">Password is so small</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primay" [disabled]="!regForm.controls.email.invalid && !regForm.controls.password.invalid">Регистрация</button>
+  </form>
+  <mat-progress-spinner *ngIf="spinnerShow" [color]="'warn'" [mode]="'indeterminate'"></mat-progress-spinner>
 </div>

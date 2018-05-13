@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from "@angular/material";
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     MatTableModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatButtonModule,
@@ -44,7 +46,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     MatTableModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   declarations: []
 })

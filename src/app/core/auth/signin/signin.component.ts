@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { MatDialogRef } from "@angular/material";
 import { LocalStorageService } from "../../local-storage.service";
@@ -12,22 +12,34 @@ import { LocalStorageService } from "../../local-storage.service";
 
 export class SigninComponent implements OnInit {
 
-  public email: FormControl = new FormControl();
-  public password: FormControl = new FormControl();
+  public loginForm: FormGroup;
+  public spinnerShow: boolean = false;
 
-  constructor(private auth: AuthService, private lc: LocalStorageService, public matDialogRef: MatDialogRef<SigninComponent>) { }
+  constructor(
+    private auth: AuthService,
+    private lc: LocalStorageService,
+    private matDialogRef: MatDialogRef<SigninComponent>,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required, Validators.minLength(2)]
+    });
   }
 
   login() {
-    this.auth.signin({email: this.email.value, password: this.password.value}).subscribe(
+    this.spinnerShow = !this.spinnerShow;
+     console.log(this.loginForm);
+    this.auth.signin(this.loginForm.value).subscribe(
       (res: any) => {
         this.lc.setItem('user', res.user);
+
         this.matDialogRef.close();
       },
       error => {
         console.log(error);
+        this.spinnerShow = !this.spinnerShow;
       }
     )
   }
