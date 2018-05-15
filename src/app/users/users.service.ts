@@ -15,9 +15,9 @@ export class UsersService {
   constructor() { }
 
   private _users: User[] = [
-    {username: 'user1', email: 'user1@email.com', password: '12345', group: 'user'},
-    {username: 'user2', email: 'user2@email.com', password: '12345', group: 'user'},
-    {username: 'user', email: 'user@email.com', password: '12345', group: 'admin'},
+    {username: 'user1', email: 'user1@email.com', password: '12345', group: 'user', jwt: '123'},
+    {username: 'user2', email: 'user2@email.com', password: '12345', group: 'user', jwt: '123'},
+    {username: 'user', email: 'user@email.com', password: '12345', group: 'admin', jwt: '123'},
   ];
 
 }

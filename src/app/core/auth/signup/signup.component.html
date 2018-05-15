@@ -1,10 +1,7 @@
 <div class="container">
   <h3>Create account.</h3>
   <mat-form-field>
-    <input matInput [formControl]="name" placeholder="Name">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput [formControl]="city" placeholder="City">
+    <input matInput [formControl]="username" placeholder="Username">
   </mat-form-field>
   <mat-form-field>
     <input matInput [formControl]="email" placeholder="Email">
@@ -12,5 +9,8 @@
   <mat-form-field>
     <input matInput [formControl]="password" placeholder="Password">
   </mat-form-field>
-  <button mat-raised-button color="primay" (click)="signUp()">Регистрация</button>
+  <mat-form-field>
+    <input matInput [formControl]="confirm" placeholder="Confirm Password">
+  </mat-form-field>
+  <button mat-raised-button color="primay" (click)="signup()">Регистрация</button>
 </div>

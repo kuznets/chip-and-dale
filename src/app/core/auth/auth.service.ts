@@ -6,8 +6,8 @@ import { LocalStorageService } from '../local-storage.service';
 @Injectable()
 export class AuthService {
 
-  private apiURL = 'https://immense-brushlands-69752.herokuapp.com';
-  //private apiURL = 'http://localhost:3000';
+  // private apiURL = 'https://immense-brushlands-69752.herokuapp.com';
+  private apiURL = 'http://localhost:3000';
 
   constructor(private httpService: HttpService, private lc: LocalStorageService) { }
 
@@ -23,9 +23,9 @@ export class AuthService {
   }
 
   public signup(data: object) {
-    this.httpService.postData('/api/signup', null, data).subscribe(
-      res => {
-        this.lc.setItem('user', res);
+    this.httpService.postData(this.apiURL + '/api/register', data, {}).subscribe(
+      (res: any) => {
+        this.lc.setItem('user', res.user);
       },
       error => {
         console.log(error);
