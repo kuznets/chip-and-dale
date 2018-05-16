@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { LocalStorageService } from '../../local-storage.service';
+import { FormValidationService } from '../../../shared/services/form-validation.service';
 
 @Component({
   selector: 'app-signin',
@@ -10,17 +13,35 @@ import { AuthService } from '../auth.service';
 
 export class SigninComponent implements OnInit {
 
-  public email: FormControl = new FormControl();
-  public password: FormControl = new FormControl();
+  public loginForm: FormGroup;
+  public spinnerShow = false;
 
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService,
+    private lc: LocalStorageService,
+    private matDialogRef: MatDialogRef<SigninComponent>,
+    private fb: FormBuilder) { }
 
-  ngOnInit() { }
-
-  login() {
-    this.auth.signin({
-      email: this.email.value,
-      password: this.password.value
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, FormValidationService.emailValidator]],
+      password: ['', [Validators.required, FormValidationService.passwordValidator]]
     });
+  }
+
+  signin() {
+    this.spinnerShow = !this.spinnerShow;
+    console.log('Login form data: ', this.loginForm);
+    this.auth.signin(this.loginForm.value).subscribe(
+      (res: any) => {
+        this.lc.setItem('user', res.user);
+
+        this.matDialogRef.close();
+      },
+      error => {
+        console.log(error);
+        this.spinnerShow = !this.spinnerShow;
+      }
+    );
   }
 }

@@ -1,5 +1,5 @@
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="cartList">
+  <mat-table #table [(dataSource)]="cartList">
 
     <!-- Position Column -->
     <ng-container matColumnDef="position">
@@ -29,6 +29,14 @@
     <ng-container matColumnDef="total">
       <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.total}} </mat-cell>
+    </ng-container>
+
+    <!-- Action price Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-raised-button color="accent" (click)="delItem(element.slug)">Del from card</button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

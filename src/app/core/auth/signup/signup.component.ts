@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LocalStorageService } from '../../local-storage.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { FormValidationService } from '../../../shared/services/form-validation.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,22 +12,37 @@ import { FormControl } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  public email: FormControl = new FormControl();
-  public password: FormControl = new FormControl();
-  public username: FormControl = new FormControl();
-  public confirm: FormControl = new FormControl();
+  public regForm: FormGroup;
+  public spinnerShow = false;
 
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService,
+    private lc: LocalStorageService,
+    public matDialogRef: MatDialogRef<SignupComponent>,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.regForm = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, FormValidationService.emailValidator]],
+      password: ['', [Validators.required, FormValidationService.passwordValidator]],
+      confirm: ['', FormValidationService.confirmValidator] // TODO How to send inside method confirm and password?
+    });
   }
 
   signup() {
-    this.auth.signup({
-      email: this.email.value,
-      password: this.password.value,
-      username: this.username.value,
-      confirm: this.confirm.value
-    });
+    this.spinnerShow = !this.spinnerShow;
+    console.log('Register form data: ', this.regForm);
+    this.auth.signup(this.regForm.value).subscribe(
+      (res: any) => {
+        this.lc.setItem('user', res.user);
+
+        this.matDialogRef.close();
+      },
+      error => {
+        console.log(error);
+        this.spinnerShow = !this.spinnerShow;
+      }
+    );
   }
 }

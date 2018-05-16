@@ -1,6 +1,18 @@
 .nav-bar{
   display: flex;
   justify-content: space-between;
+
+  div.bage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: yellow;
+    color: black;
+    line-height: 1;
+    font-size: 12px;
+    border-radius: 15px;
+    padding: 0 2px;
+  }
 }
 .logo {
   a {

@@ -11,13 +11,11 @@ import { SearchComponent } from './components/search/search.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatAutocompleteModule } from "@angular/material";
 
 @NgModule({
   imports: [
     CoreModule,
     ReactiveFormsModule,
-    MatAutocompleteModule,
     CommonModule,
     CartModule,
     ProfileModule,
@@ -26,7 +24,6 @@ import { MatAutocompleteModule } from "@angular/material";
   ],
   exports: [
     CartModule,
-    MatAutocompleteModule,
     ProfileModule,
     AdminModule,
     NavBarComponent,
