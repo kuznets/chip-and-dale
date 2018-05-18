@@ -29,10 +29,11 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-paginator #pager
-                   [length]="pages"
-                   [pageSize]="limit"
-                   [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator #pager 
+      [length]="pages"
+      [pageSize]="limit"
+      [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
 
     <router-outlet></router-outlet>
   </div>

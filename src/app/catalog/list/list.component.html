@@ -1,10 +1,10 @@
 <ng-container *ngIf="productList.length; else notHeaveProducts">
   <mat-card class="product-card" *ngFor="let product of productList">
     <mat-card-header>
-      <mat-card-title><a [routerLink]="['/product', product.slug]">{{ product.name }}</a></mat-card-title>
-      <mat-card-subtitle>Категория: {{ product.category_name }}</mat-card-subtitle>
+      <mat-card-title><a [routerLink]="['/product', product.slug]">{{ product.title }}</a></mat-card-title>
+      <mat-card-subtitle>Категория: {{ product.category }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="product.img" [alt]="product.name" [title]="product.name">
+    <img mat-card-image [src]="product.img_url" [alt]="product.title" [title]="product.title">
     <mat-card-content>
       <p>
         {{ product.description }}

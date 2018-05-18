@@ -11,6 +11,9 @@ import 'rxjs/add/observable/from';
 @Injectable()
 export class CatalogService {
 
+  // private apiURL = 'https://immense-brushlands-69752.herokuapp.com';
+  private apiURL = 'http://localhost:3000';
+
   private _categories: Category[] = Categories;
   private _products:   Product[] = Products;
 
@@ -28,7 +31,7 @@ export class CatalogService {
   }
 
   getProductList() {
-    return Observable.from(this._products);
+    return this.httpService.getData(this.apiURL + '/api/products');
   }
 
   addProduct(data: object) {

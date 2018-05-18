@@ -26,8 +26,8 @@ export class SearchComponent implements OnInit {
       .do(() => this.resultSearch = this.prods)
       .subscribe(value   => {
         this.resultSearch = this.resultSearch
-          .filter(el => {
-            return el.name.toLowerCase().indexOf(value) !== -1
+          .filter((el: any) => {
+            return el.name.toLowerCase().indexOf(value) !== -1;
           });
       });
   }

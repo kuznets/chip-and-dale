@@ -35,16 +35,19 @@ export class ListComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.activatedRoute.params.subscribe((params: any) => {
         if (params.slug) {
-          this.catalogService.getProductList()
-            .filter(item => item.category_id === Number(params.slug))
-            .do((products: Product) => {
-              this.productList.push(products);
-            })
-            .subscribe();
+          this.catalogService.getProductList().subscribe(
+          (res: any) => {
+            console.log('RES', res);
+          });
+            // .filter((item: any) => item.category === Number(params.slug))
+            // .do((products: Product) => {
+            //   this.productList.push(products);
+            // })
+            // .subscribe();
         } else {
           this.catalogService.getProductList()
-            .do((products) => {
-              this.productList.push(products);
+            .do((products: any) => {
+              this.productList = products;
             })
             .subscribe();
         }
