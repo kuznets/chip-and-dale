@@ -34,7 +34,7 @@ export class ListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs.push(
       this.activatedRoute.params.subscribe((params: any) => {
-        if (params.slug) {
+        if (params.slug) { // TODO For routes with params
           this.catalogService.getProductList().subscribe(
           (res: any) => {
             console.log('RES', res);

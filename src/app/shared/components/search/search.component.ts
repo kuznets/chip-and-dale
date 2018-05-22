@@ -1,35 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
-import { Products } from "../../../catalog/products.enum";
-import { Product } from "../../../catalog/products.interface";
-import "rxjs/operator/do";
-import "rxjs/operator/filter";
+import { Product } from './../../../catalog/products.interface';
+import { CatalogService } from './../../../catalog/catalog.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import 'rxjs/operator/do';
+import 'rxjs/operator/filter';
 import 'rxjs/add/operator/debounceTime';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
 
   public searchData: FormControl = new FormControl();
 
-  prods: Product[] = Products;
-  resultSearch: Product[] = [];
+  private subs: Subscription[] = [];
+  public productsList: Product[] = [];
 
-  constructor() { }
+  constructor(private catalogService: CatalogService) { }
 
   ngOnInit() {
-    this.searchData.valueChanges
-      .debounceTime(300)
-      .do(() => this.resultSearch = this.prods)
-      .subscribe(value   => {
-        this.resultSearch = this.resultSearch
-          .filter((el: any) => {
-            return el.name.toLowerCase().indexOf(value) !== -1;
-          });
-      });
+    this.subs.push(
+      this.catalogService.getProductList()
+        .do((products: any) => {
+          this.productsList = products;
+        })
+        .subscribe(),
+
+      this.searchData.valueChanges
+        .debounceTime(300)
+        .subscribe(value => {
+          this.productsList = this.productsList
+            .filter((el: any) => {
+              return el.title.toLowerCase().indexOf(value) !== -1;
+            });
+        }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
 }
