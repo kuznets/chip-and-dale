@@ -17,15 +17,17 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public product: Product;
 
-  constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService) {}
+  constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService) { }
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe((params: any) => {
-      this.catalogService.getProductList()
-        .filter((item: any) => item.slug === params.slug)
-        .subscribe((product: Product) => {
-          this.product = product;
-        });
+      if (params.slug) {
+        this.catalogService.getOneProduct(params.slug)
+          .do((product: Product) => {
+            this.product = product;
+          })
+          .subscribe();
+      }
     });
   }
 

@@ -4,7 +4,7 @@
 </mat-form-field>
 
 <mat-autocomplete #auto="matAutocomplete">
-  <mat-option *ngFor="let result of resultSearch">
-    <a [routerLink]="['/product', result.slug]">{{ result.name }}</a>
+  <mat-option *ngFor="let result of productsList">
+    <a [routerLink]="['/product', result.slug]">{{ result.title }}</a>
   </mat-option>
 </mat-autocomplete>

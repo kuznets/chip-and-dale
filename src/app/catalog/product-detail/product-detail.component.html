@@ -1,10 +1,10 @@
 <div *ngIf="product">
   <mat-card class="product-card">
     <mat-card-header>
-      <mat-card-title>{{ product.name }}</mat-card-title>
-      <mat-card-subtitle>Категория: {{ product.category_name }}</mat-card-subtitle>
+      <mat-card-title>{{ product.title }}</mat-card-title>
+      <mat-card-subtitle>Категория: {{ product.category }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="product.img" [alt]="product.name" [title]="product.name">
+    <img mat-card-image [src]="product.img_url" [alt]="product.title" [title]="product.title">
     <mat-card-content>
       <p>{{ product.description }}</p>
       <div class="price">{{ product.price }}$</div>
