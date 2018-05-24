@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.push(
-      this.catalogService.getProductList()
+      this.catalogService.getProductList() // TODO Change search logic
         .do((products: any) => {
           this.productsList = products;
         })

@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Category } from "./category.interface";
-import { CatalogService } from "./catalog.service";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Category } from './category.interface';
+import { CatalogService } from './catalog.service';
 import 'rxjs/add/operator/do';
-import { FormControl } from "@angular/forms";
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
 
+  private sub: Subscription;
   public categoryList: Category[] = [];
   public categories_selector = new FormControl();
 
@@ -29,13 +31,17 @@ export class CatalogComponent implements OnInit {
   constructor(private catalogService: CatalogService) {}
 
   ngOnInit() {
-    this.catalogService.categories$
-      .do((category: Category) => {
-        this.categoryList.push(category);
+    this.sub = this.catalogService.getCategories()
+      .do((categories: any) => {
+        this.categoryList = categories;
       })
       .subscribe();
 
     this.catalogService.getCategories();
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }

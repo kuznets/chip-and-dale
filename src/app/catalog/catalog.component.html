@@ -2,15 +2,15 @@
   <div class="col col-left">
     <mat-list>
       <mat-list-item *ngFor="let category of categoryList">
-        <a [routerLink]="['/category', category.slug]">{{category.name}}</a>
+        <a [routerLink]="['/category', category.slug]">{{category.title}}</a>
       </mat-list-item>
     </mat-list>
   </div>
   <div class="col col-right">
     <mat-form-field>
       <mat-select placeholder="Categories">
-        <mat-option *ngFor="let category of categoryList" [value]="category.name">
-          {{ category.name }}
+        <mat-option *ngFor="let category of categoryList" [value]="category.title">
+          {{ category.title }}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -4,13 +4,10 @@ import { HttpService } from '../core/http.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from './products.interface';
 import { Subject } from 'rxjs/Subject';
-import { Categories } from './category.enum';
 import 'rxjs/add/observable/from';
 
 @Injectable()
 export class CatalogService {
-
-  private _categories: Category[] = Categories;
 
   public categories$: Subject<Category> = new Subject();
   public products$: Observable<any>;
@@ -18,7 +15,7 @@ export class CatalogService {
   constructor(private httpService: HttpService) { }
 
   getCategories() {
-    return this._categories.forEach(el => this.categories$.next(el));
+    return this.httpService.getData(`/api/categories`);
   }
 
   addCategories(category: Category) {
@@ -29,7 +26,11 @@ export class CatalogService {
     return this.httpService.getData(`/api/products`);
   }
 
-  // TODO Check It !!!
+  // TODO Method can send JSON with filter params and receive result.
+  getProductsByFilters(data: object) {
+    return this.httpService.postData(`/api/products/`, null, data);
+  }
+
   getOneProduct(slug: string) {
     return this.httpService.getData(`/api/product/${slug}`);
   }
