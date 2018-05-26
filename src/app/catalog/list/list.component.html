@@ -36,7 +36,7 @@
       <p>Price <span class="price">{{ product.price }}$</span></p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="accent">Add to card</button>
+      <button mat-raised-button color="accent" (click)="addItemToCard(product)">Add to card</button>
     </mat-card-actions>
   </mat-card>
 
