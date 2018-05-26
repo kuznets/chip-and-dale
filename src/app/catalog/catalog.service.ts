@@ -28,7 +28,7 @@ export class CatalogService {
 
   // TODO Method can send JSON with filter params and receive result.
   getProductsByFilters(data: object) {
-    return this.httpService.postData(`/api/products/`, null, data);
+    return this.httpService.getData(`/api/products/`,  data);
   }
 
   getOneProduct(slug: string) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class HttpService {
@@ -10,8 +10,8 @@ export class HttpService {
   constructor(private httpCli: HttpClient) {}
 
   // get any data from current path
-  public getData(path: string) {
-    return this.httpCli.get(`${this.apiURL}${path}`);
+  public getData(path: string, options?) {
+    return this.httpCli.get(`${this.apiURL}${path}`, null || {params: options});
   }
 
   // post to current pathAPI
