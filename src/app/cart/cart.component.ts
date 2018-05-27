@@ -12,27 +12,28 @@ export class CartComponent implements OnInit {
 
   displayedColumns = ['position', 'title', 'amount', 'price', 'total', 'action'];
   public cartList: Cart[] = [];
-  public total_price: number;
+  public total_price: number = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.cartList = this.cartService.cartProducts.products;
-    this.total_price = this.cartService.cartProducts.total_price;
+    this.updateList();
+    this.cartService.cartCount$.subscribe(count => this.updateList());
+  }
+
+  updateList(){
+    this.cartList = this.cartService.cartProducts;
+    if (this.cartList) {
+      this.cartList.forEach(item => {
+        console.log(this.total_price);
+        this.total_price += item.price;
+      });
+    }
   }
 
   delItem(data: Cart) {
-    // this.cartService.removeFromCard(slug).subscribe(
-    //   res => {
-    //     this.cartList.forEach((el, key) => {
-    //       if (el.slug == slug) delete this.cartList[key];
-    //     });
-    //   }
-    // );
-
     this.cartService.removeFromCard(data);
-    this.cartList = this.cartService.cartProducts.products;
-    this.total_price = this.cartService.cartProducts.total_price;
+    // this.cartService.removeFromCard(data);
 
     // this.cartList.forEach((el, key) => {
     //   console.log(el, key, el.slug == slug, this.cartList);

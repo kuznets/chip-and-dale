@@ -1,10 +1,10 @@
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [(dataSource)]="cartList" *ngIf="cartList.length; else notHeaveProducts">
+  <mat-table #table [(dataSource)]="cartList" *ngIf="cartList && cartList.length; else notHeaveProducts">
 
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
@@ -16,7 +16,7 @@
     <!-- Amount Column -->
     <ng-container matColumnDef="amount">
       <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.amount_order}} </mat-cell>
     </ng-container>
 
     <!-- Price Column -->
