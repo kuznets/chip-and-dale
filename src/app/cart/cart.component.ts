@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
 
   displayedColumns = ['position', 'title', 'amount', 'price', 'total', 'action'];
   public cartList: Cart[] = [];
-  public total_price: number = 0;
+  public total_price = 0;
 
   constructor(private cartService: CartService) {}
 

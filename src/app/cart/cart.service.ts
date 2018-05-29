@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../core/local-storage.service';
 import { HttpService } from '../core/http.service';
-//import { cart } from './cart.enum';
-import { Subject } from "rxjs/Subject";
-import { CatalogService } from "../catalog/catalog.service";
-//import { Cart } from "./cart.interface";
+// import { cart } from './cart.enum';
+import { Subject } from 'rxjs/Subject';
+import { CatalogService } from '../catalog/catalog.service';
+// import { Cart } from "./cart.interface";
 
 @Injectable()
 export class CartService {
 
   public cartCount$: Subject<number> = new Subject<number>();
-  //public cart: Cart[];
+  // public cart: Cart[];
   public cartProducts: any;
   public cartID: string;
 
   constructor(private httpService: HttpService, private lss: LocalStorageService, private catalog: CatalogService) {}
 
-  updateSubscribes(res){
+  updateSubscribes(res) {
     this.cartProducts = res.products;
     this.cartCount$.next(res.products.length);
   }
@@ -36,9 +36,9 @@ export class CartService {
     }
   }
 
-  addToCard(data: object) {
+  addToCard(data: any) {
     if (!this.cartID) {
-      let cartObject = {
+      const cartObject = {
         products: [`${data._id}:1`],
         uid: this.cartID || `${new Date().getTime()}-${new Date().getUTCDay()}`,
         count: 1,
@@ -47,16 +47,16 @@ export class CartService {
       };
       this.httpService.postData('/api/cart', cartObject, {}).subscribe(
         (res: any) => {
-          console.log('res',res, data);
+          console.log('res', res, data);
           this.updateSubscribes(res);
           this.lss.setItem('cart', res._id);
         },
         (err: any) => {
-          console.log('err',err, data);
+          console.log('err', err, data);
         }
       );
     } else {
-      let cartObject = {
+      const cartObject = {
         product: data._id,
         price: data.price,
         amount_order: 1
@@ -64,11 +64,11 @@ export class CartService {
 
       this.httpService.putData(`/api/cart/${this.cartID}/add`, cartObject, {}).subscribe(
         (res: any) => {
-          console.log('res',res, data);
+          console.log('res', res, data);
           this.updateSubscribes(res);
         },
         (err: any) => {
-          console.log('err',err, data);
+          console.log('err', err, data);
         }
       );
       // this.cartProducts.products.push(`${data._id}:${data.amount}`);
@@ -80,7 +80,7 @@ export class CartService {
   }
 
   removeFromCard(data: any) {
-    let cartObject = {
+    const cartObject = {
       product: data._id,
       price: data.price
     };
