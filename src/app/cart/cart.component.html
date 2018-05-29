@@ -1,22 +1,22 @@
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [(dataSource)]="cartList">
+  <mat-table #table [(dataSource)]="cartList" *ngIf="cartList && cartList.length; else notHeaveProducts">
 
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"><a [routerLink]="['/product', element.slug]">{{element.name}}</a></mat-cell>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"><a [routerLink]="['/product', element.slug]">{{element.title}}</a></mat-cell>
     </ng-container>
 
     <!-- Amount Column -->
     <ng-container matColumnDef="amount">
       <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.amount_order}} </mat-cell>
     </ng-container>
 
     <!-- Price Column -->
@@ -35,11 +35,23 @@
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-raised-button color="accent" (click)="delItem(element.slug)">Del from card</button>
+        <button mat-raised-button color="accent" (click)="delItem(element)">Del from card</button>
       </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+
+  <p *ngIf="total_price">Total price: {{total_price}}$</p>
+
+  <ng-template #notHeaveProducts>
+    <mat-card class="product-card">
+      <mat-card-content>
+        <p>
+          Not heave products in cart. Return to <a [routerLink]="['/']">catalog.</a>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
 </div>

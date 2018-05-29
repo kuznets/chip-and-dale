@@ -1,3 +1,29 @@
+<mat-form-field>
+  <mat-select placeholder="Price" [(ngModel)]="select_price" name="price" (change)="onSelectChanged($event)">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let price of prices" [value]="price.value">
+      {{ price.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select placeholder="ABC" [(ngModel)]="select_sort" name="title" (change)="onSelectChanged($event)">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let alphabet of alphabets" [value]="alphabet.value">
+      {{ alphabet.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-paginator #paginator
+               [length]="productList.length"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 10, 25, 100]"
+               [showFirstLastButtons]="true"
+               (page)="pageEvent = $event">
+</mat-paginator>
+
 <ng-container *ngIf="productList.length; else notHeaveProducts">
   <mat-card class="product-card" *ngFor="let product of productList">
     <mat-card-header>
@@ -9,10 +35,13 @@
       <p>
         {{ product.description }}
       </p>
-      <div class="price">{{ product.price }}$</div>
-      <button mat-raised-button color="accent">Add to card</button>
+      <p>Price <span class="price">{{ product.price }}$</span></p>
     </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="addItemToCard(product)">Add to card</button>
+    </mat-card-actions>
   </mat-card>
+
 </ng-container>
 
 <ng-template #notHeaveProducts>

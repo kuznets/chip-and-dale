@@ -10,33 +10,34 @@ import 'rxjs/add/operator/do';
 })
 export class CartComponent implements OnInit {
 
-  displayedColumns = ['position', 'name', 'amount', 'price', 'total', 'action'];
+  displayedColumns = ['position', 'title', 'amount', 'price', 'total', 'action'];
   public cartList: Cart[] = [];
+  public total_price: number = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.cartService.cartProducts$
-      .do(item => {
-        // console.log(item);
-        this.cartList.push(item)
-      })
-      .subscribe();
-    this.cartService.getCardProducts();
+    this.updateList();
+    this.cartService.cartCount$.subscribe(count => this.updateList());
   }
 
-  delItem(slug: string) {
-    // this.cartService.removeFromCard(slug).subscribe(
-    //   res => {
-    //     this.cartList.forEach((el, key) => {
-    //       if (el.slug == slug) delete this.cartList[key];
-    //     });
-    //   }
-    // );
+  updateList(){
+    this.cartList = this.cartService.cartProducts;
+    if (this.cartList) {
+      this.cartList.forEach(item => {
+        console.log(this.total_price);
+        this.total_price += item.price;
+      });
+    }
+  }
 
-    this.cartList.forEach((el, key) => {
-      console.log(el, key, el.slug == slug, this.cartList);
-      if (el.slug == slug) delete this.cartList[key];
-    });
+  delItem(data: Cart) {
+    this.cartService.removeFromCard(data);
+    // this.cartService.removeFromCard(data);
+
+    // this.cartList.forEach((el, key) => {
+    //   console.log(el, key, el.slug == slug, this.cartList);
+    //   if (el.slug == slug) delete this.cartList[key];
+    // });
   }
 }

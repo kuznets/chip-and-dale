@@ -16,18 +16,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
   public categoryList: Category[] = [];
   public categories_selector = new FormControl();
 
-
-  public prices: Array<Object> = [
-    {name: 'category1', value: 'Price: Low to High'},
-    {name: 'category2', value: 'Price: High to Low'}
-  ];
-
-  public alphabets: Array<Object> = [
-    {name: 'category1', value: 'a-z'},
-    {name: 'category2', value: 'z-a'}
-  ];
-
-
   constructor(private catalogService: CatalogService) {}
 
   ngOnInit() {
@@ -43,5 +31,4 @@ export class CatalogComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-
 }
