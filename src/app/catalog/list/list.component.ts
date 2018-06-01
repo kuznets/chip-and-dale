@@ -6,7 +6,7 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/do';
 import { CartService } from '../../cart/cart.service';
-///import { Cart } from '../../cart/cart.interface';
+import { Cart } from '../../cart/cart.interface';
 
 @Component({
   selector: 'app-list',
@@ -100,12 +100,12 @@ export class ListComponent implements OnInit, OnDestroy {
     }
   }
 
-  addItemToCard(data: object) {
-    console.log(data);
+  addItemToCard(data: Cart) {
+    //console.log(data);
     this.cart.addToCard(data);
   }
 
-  delItemFromCard(data: object) {
+  delItemFromCard(data: Cart) {
     this.cart.addToCard(data);
   }
 }

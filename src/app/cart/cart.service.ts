@@ -4,7 +4,7 @@ import { HttpService } from '../core/http.service';
 // import { cart } from './cart.enum';
 import { Subject } from 'rxjs/Subject';
 import { CatalogService } from '../catalog/catalog.service';
-// import { Cart } from "./cart.interface";
+import { Cart } from "./cart.interface";
 
 @Injectable()
 export class CartService {
@@ -36,9 +36,9 @@ export class CartService {
     }
   }
 
-  addToCard(data: any) {
+  addToCard(data: Cart) {
     if (!this.cartID) {
-      const cartObject = {
+      let cartObject = {
         products: [`${data._id}:1`],
         uid: this.cartID || `${new Date().getTime()}-${new Date().getUTCDay()}`,
         count: 1,
@@ -56,7 +56,7 @@ export class CartService {
         }
       );
     } else {
-      const cartObject = {
+      let cartObject = {
         product: data._id,
         price: data.price,
         amount_order: 1
@@ -80,7 +80,7 @@ export class CartService {
   }
 
   removeFromCard(data: any) {
-    const cartObject = {
+    let cartObject = {
       product: data._id,
       price: data.price
     };
