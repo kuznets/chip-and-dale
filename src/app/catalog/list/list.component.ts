@@ -106,7 +106,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   delItemFromCard(data: Cart) {
-    this.cart.addToCard(data);
+    this.cart.removeFromCard(data);
   }
 }
 

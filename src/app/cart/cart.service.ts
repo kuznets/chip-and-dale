@@ -49,6 +49,7 @@ export class CartService {
         (res: any) => {
           console.log('res', res, data);
           this.updateSubscribes(res);
+          this.cartID = res._id;
           this.lss.setItem('cart', res._id);
         },
         (err: any) => {
@@ -95,8 +96,36 @@ export class CartService {
     );
   }
 
-  clearCard(data: object) {
-    return this.httpService.deleteData(`/api/cart/${this.cartID}`, data);
+  updateCart(data: Cart) {
+    let cartObject = {
+      product: data._id,
+      amount_order: data.amount_order,
+      price: data.price
+    };
+
+    this.httpService.putData(`/api/cart/${this.cartID}/update`, cartObject, {}).subscribe(
+      res => {
+        this.updateSubscribes(res);
+      },
+      err => {
+        console.log(err, data);
+      }
+    );
   }
 
+  clearCart() {
+    return this.httpService.deleteData(`/api/cart/${this.cartID}`, {}).subscribe(
+      res => {
+        let data = {
+          products: []
+        };
+        this.lss.delItem('cart');
+        this.cartID = null;
+        this.updateSubscribes(data);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

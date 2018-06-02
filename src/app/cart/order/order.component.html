@@ -1,0 +1,15 @@
+<form [formGroup]="userData" (submit)="order()" *ngIf="!spinnerShow">
+  <mat-form-field>
+    <input matInput formControlName="username" placeholder="Username" type="text" required>
+    <mat-error *ngIf="userData.controls.username.hasError('required')">Username is empty</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="email" placeholder="Email" type="email" required>
+    <mat-error *ngIf="userData.controls.email.hasError('required')">Error validation Email</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="city" placeholder="City to delivery" type="text" required>
+    <mat-error *ngIf="userData.controls.city.hasError('required')">Not set city</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" [disabled]="!userData.controls.username.invalid || !userData.controls.email.invalid || !userData.controls.city.invalid">Order</button>
+</form>
