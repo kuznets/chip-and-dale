@@ -1,7 +1,6 @@
 <div class="container">
   <h3>Login into your account.</h3>
-  <button mat-raised-button color="primay" (click)="signin()">Login</button>
-  <form [formGroup]="loginForm" (submit)="login()" *ngIf="!spinnerShow">
+  <form [formGroup]="loginForm" *ngIf="!spinnerShow" novalidate>
     <mat-form-field>
       <input matInput formControlName="email" placeholder="Email" type="email" required>
       <mat-error *ngIf="loginForm.controls.email.hasError('required')">Error validation Email</mat-error>
@@ -10,7 +9,7 @@
       <input matInput formControlName="password" placeholder="Password" type="password" required>
       <mat-error *ngIf="loginForm.controls.password.hasError('required')">Password is so small</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="loginForm.controls.email.invalid || loginForm.controls.password.invalid">Войти</button>
+    <button mat-raised-button color="primary" [disabled]="loginForm.controls.email.invalid == true || loginForm.controls.password.invalid == true" (click)="login()" >Войти</button>
   </form>
   <mat-progress-spinner *ngIf="spinnerShow" [color]="'warn'" [mode]="'indeterminate'"></mat-progress-spinner>
 </div>

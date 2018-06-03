@@ -8,6 +8,7 @@ import { CoreModule } from '../core/core.module';
 import { CartService } from './cart.service';
 import { ListComponent } from './list/list.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { OrderService } from "./order/order.service";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     CartComponent
   ],
   providers: [
-    CartService
+    CartService,
+    OrderService
   ],
   declarations: [CartComponent, OrderComponent, ListComponent]
 })

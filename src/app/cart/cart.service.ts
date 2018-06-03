@@ -11,6 +11,7 @@ export class CartService {
 
   public cartCount$: Subject<number> = new Subject<number>();
   // public cart: Cart[];
+  public cartData: object;
   public cartProducts: any;
   public cartID: string;
 
@@ -18,6 +19,7 @@ export class CartService {
 
   updateSubscribes(res) {
     this.cartProducts = res.products;
+    this.cartData = res;
     this.cartCount$.next(res.products.length);
   }
 
@@ -38,13 +40,14 @@ export class CartService {
 
   addToCard(data: Cart) {
     if (!this.cartID) {
-      let cartObject = {
-        products: [`${data._id}:1`],
-        uid: this.cartID || `${new Date().getTime()}-${new Date().getUTCDay()}`,
-        count: 1,
-        total_price: data.price,
-        description: ''
-      };
+      let user = this.lss.getItem('user'),
+          cartObject = {
+            products: [`${data._id}:1`],
+            uid: (user && user.username ? user.username : `${new Date().getTime()}-${new Date().getUTCDay()}`),
+            count: 1,
+            total_price: data.price,
+            description: ''
+          };
       this.httpService.postData('/api/cart', cartObject, {}).subscribe(
         (res: any) => {
           console.log('res', res, data);
@@ -61,7 +64,7 @@ export class CartService {
         product: data._id,
         price: data.price,
         amount_order: 1
-      };      console.log(cartObject);
+      };
 
       this.httpService.putData(`/api/cart/${this.cartID}/add`, cartObject, {}).subscribe(
         (res: any) => {
