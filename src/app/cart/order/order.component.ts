@@ -49,9 +49,9 @@ export class OrderComponent implements OnInit {
   order(){
     this.spinnerShow = !this.spinnerShow;
 
-    let cartData = this.cart.cartData,
-        formData = this.userData.value,
-        requestObject = {
+    let cartData: any = this.cart.cartData,
+        formData: any = this.userData.value,
+        requestObject: any = {
           uid: (this.user && this.user._id ? this.user._id : cartData.uid),
           user_name: formData.name,
           user_city: formData.city,
