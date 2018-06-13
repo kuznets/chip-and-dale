@@ -16,16 +16,13 @@
   </mat-select>
 </mat-form-field>
 
-<mat-paginator #paginator 
-  [length]="productList.length" 
-  [pageSize]="5" 
-  [pageSizeOptions]="[5, 10, 25, 100]" 
-  [showFirstLastButtons]="true"
-  (page)="pageEvent = $event">
-</mat-paginator>
+<pagination-controls (pageChange)="p = $event" maxSize="7">
+</pagination-controls>
 
 <ng-container *ngIf="productList.length; else notHeaveProducts">
-  <mat-card class="product-card" *ngFor="let product of productList">
+  <mat-card class="product-card" *ngFor="let product of productList | paginate: { 
+    itemsPerPage: 5, 
+    currentPage: p }">
     <mat-card-header>
       <mat-card-title>
         <a [routerLink]="['/product', product.slug]">{{ product.title }}</a>
@@ -45,8 +42,10 @@
       <button mat-raised-button color="accent" (click)="addItemToCard(product)">Add to card</button>
     </mat-card-actions>
   </mat-card>
-
 </ng-container>
+
+<pagination-controls (pageChange)="p = $event" maxSize="7">
+</pagination-controls>
 
 <ng-template #notHeaveProducts>
   <mat-card class="product-card">

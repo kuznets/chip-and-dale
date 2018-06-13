@@ -8,14 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
 
 @NgModule({
   imports: [
@@ -28,7 +26,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatGridListModule,
     MatListModule,
     MatCardModule,
-    MatPaginatorModule,
     MatSelectModule,
     MatTableModule,
     MatDialogModule,
@@ -45,7 +42,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatGridListModule,
     MatListModule,
     MatCardModule,
-    MatPaginatorModule,
     MatSelectModule,
     MatTableModule,
     MatDialogModule,
