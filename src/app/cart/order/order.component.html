@@ -1,0 +1,23 @@
+<div class="user-form">
+  <form [formGroup]="userData" *ngIf="!spinnerShow && !orderStatus" novalidate (submit)="order()">
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Username" type="text" required>
+      <mat-error *ngIf="userData.controls.name.hasError('required')">Username is empty</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="email" placeholder="Email" type="email" required>
+      <mat-error *ngIf="userData.controls.email.hasError('required')">Error validation Email</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="city" placeholder="City to delivery" type="text" required>
+      <mat-error *ngIf="userData.controls.city.hasError('required')">Not set city</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="userData.controls.name.invalid == true || userData.controls.email.invalid == true || userData.controls.city.invalid == true">Valid purchase</button>
+  </form>
+
+  <mat-progress-spinner *ngIf="spinnerShow" color="warn" mode="indeterminate"></mat-progress-spinner>
+
+  <div *ngIf="orderStatus" class="delivery">
+    <p>You order has been send to delivery service. You can return to <a [routerLink]="['/']">catalog</a>, or wait order.</p>
+  </div>
+</div>
