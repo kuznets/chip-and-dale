@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
     this.cartService.cartCount$.subscribe(count => this.updateList());
   }
 
-  updateList(){
+  updateList() {
     this.cartList = this.cartService.cartProducts;
     if (this.cartList) {
       this.cartList.forEach(item => {

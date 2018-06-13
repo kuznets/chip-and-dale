@@ -32,7 +32,6 @@ export class SignupComponent implements OnInit {
 
   signup() {
     this.spinnerShow = !this.spinnerShow;
-    console.log('Register form data: ', this.regForm);
     this.auth.signup(this.regForm.value).subscribe(
       (res: any) => {
         this.lc.setItem('user', res.user);

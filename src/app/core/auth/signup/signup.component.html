@@ -18,7 +18,7 @@
       <input matInput formControlName="confirm" placeholder="Confirm password" type="password" required>
       <mat-error *ngIf="regForm.controls.confirm.hasError('required')">Passwords must match</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primay" [disabled]="!regForm.controls.email.invalid && !regForm.controls.password.invalid">Регистрация</button>
+    <!-- <button mat-raised-button color="primay" [disabled]="!regForm.valid" (click)="signup()">Регистрация</button> -->
   </form>
   <mat-progress-spinner *ngIf="spinnerShow" [color]="'warn'" [mode]="'indeterminate'"></mat-progress-spinner>
 </div>
