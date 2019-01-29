@@ -15,9 +15,12 @@ export class CartService {
   public cartProducts: any;
   public cartID: string;
 
-  constructor(private httpService: HttpService, private lss: LocalStorageService, private catalog: CatalogService) {}
+  constructor(
+    private httpService: HttpService,
+    private lss: LocalStorageService,
+    private catalog: CatalogService) {}
 
-  updateSubscribes(res) {
+  updateSubscribes(res: any) {
     this.cartProducts = res.products;
     this.cartData = res;
     this.cartCount$.next(res.products.length);

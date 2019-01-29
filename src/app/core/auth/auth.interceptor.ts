@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
+    user: any;
+
     constructor(
         private localStorageService: LocalStorageService,
         private httpClient: HttpClient
@@ -13,19 +15,21 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        let user: any = this.localStorageService.getItem('user');
+        this.user = this.localStorageService.getItem('user');
 
-        if(user) {
-          let clonedRequest = req.clone({
-            setHeaders: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${user.token}`
-            }
-          });
+        if (this.user) {
+            console.log('USER EXIST ', this.user);
 
-          return next.handle(clonedRequest);
-        } else {
-          return next.handle(req.clone({}));
+            const clonedRequest = req.clone({
+                setHeaders: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.user.token}`
+                }
+            });
+
+            return next.handle(clonedRequest);
         }
+
+        return next.handle(req);
     }
 }
