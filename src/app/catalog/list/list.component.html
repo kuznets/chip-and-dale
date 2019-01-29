@@ -1,19 +1,51 @@
+<mat-form-field>
+  <mat-select placeholder="Price" [(ngModel)]="select_price" name="price" (change)="onSelectChanged($event)">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let price of prices" [value]="price.value">
+      {{ price.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select placeholder="ABC" [(ngModel)]="select_sort" name="title" (change)="onSelectChanged($event)">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let alphabet of alphabets" [value]="alphabet.value">
+      {{ alphabet.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<pagination-controls (pageChange)="p = $event" maxSize="7">
+</pagination-controls>
+
 <ng-container *ngIf="productList.length; else notHeaveProducts">
-  <mat-card class="product-card" *ngFor="let product of productList">
+  <mat-card class="product-card" *ngFor="let product of productList | paginate: { 
+    itemsPerPage: 5, 
+    currentPage: p }">
     <mat-card-header>
-      <mat-card-title><a [routerLink]="['/product', product.slug]">{{ product.name }}</a></mat-card-title>
-      <mat-card-subtitle>Категория: {{ product.category_name }}</mat-card-subtitle>
+      <mat-card-title>
+        <a [routerLink]="['/product', product.slug]">{{ product.title }}</a>
+      </mat-card-title>
+      <mat-card-subtitle>Категория: {{ product.category }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="product.img" [alt]="product.name" [title]="product.name">
+    <img mat-card-image [src]="product.img_url" [alt]="product.title" [title]="product.title">
     <mat-card-content>
       <p>
         {{ product.description }}
       </p>
-      <div class="price">{{ product.price }}$</div>
-      <button mat-raised-button color="accent">Add to card</button>
+      <p>Price
+        <span class="price">{{ product.price }}$</span>
+      </p>
     </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="addItemToCard(product)">Add to card</button>
+    </mat-card-actions>
   </mat-card>
 </ng-container>
+
+<pagination-controls (pageChange)="p = $event" maxSize="7">
+</pagination-controls>
 
 <ng-template #notHeaveProducts>
   <mat-card class="product-card">

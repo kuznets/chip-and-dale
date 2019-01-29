@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 
-import { Product } from "../products.interface";
-import { CatalogService } from "../catalog.service";
-import { Subscription } from "rxjs/Subscription";
-import { Category } from "../category.interface";
+import { Product } from '../products.interface';
+import { CatalogService } from '../catalog.service';
+import { Subscription } from 'rxjs/Subscription';
+import { Category } from '../category.interface';
 import 'rxjs/add/operator/do';
 
 @Component({
@@ -17,15 +17,17 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public product: Product;
 
-  constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService) {}
+  constructor(private activatedRoute: ActivatedRoute, private catalogService: CatalogService) { }
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe((params: any) => {
-      this.catalogService.getProductList()
-        .filter(item => item.slug === params.slug)
-        .subscribe((product: Product) => {
-          this.product = product;
-        });
+      if (params.slug) {
+        this.catalogService.getOneProduct(params.slug)
+          .do((product: Product) => {
+            this.product = product;
+          })
+          .subscribe();
+      }
     });
   }
 

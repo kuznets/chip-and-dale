@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { SigninComponent } from '../../../core/auth/signin/signin.component';
 import { SignupComponent } from '../../../core/auth/signup/signup.component';
 import { AuthService } from '../../../core/auth/auth.service';
+import { CartService } from "../../../cart/cart.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,8 +13,9 @@ import { AuthService } from '../../../core/auth/auth.service';
 export class NavBarComponent implements OnInit {
 
   public user: any = false;
+  public cartCount: number = 0;
 
-  constructor(public dialog: MatDialog, private auth: AuthService) { }
+  constructor(public dialog: MatDialog, private auth: AuthService, private cart: CartService) { }
 
   signIn() {
     const dialogRef = this.dialog.open(SigninComponent, {
@@ -22,7 +24,6 @@ export class NavBarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.user = this.auth.getUserInfo();
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -33,8 +34,13 @@ export class NavBarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.user = this.auth.getUserInfo();
-      console.log(`Dialog result: ${result}`);
+      console.log(`(signUp) Dialog result: ${result}`);
     });
+  }
+
+  Logout() {
+    this.user = false;
+    this.auth.logout();
   }
 
   checkUser() {
@@ -43,6 +49,8 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.checkUser();
+    this.cart.getCardProducts();
+    this.cart.cartCount$.subscribe(e => this.cartCount = e);
   }
 
 }

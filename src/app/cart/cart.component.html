@@ -1,37 +1,3 @@
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="cartList">
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"><a [routerLink]="['/product', element.slug]">{{element.name}}</a></mat-cell>
-    </ng-container>
-
-    <!-- Amount Column -->
-    <ng-container matColumnDef="amount">
-      <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
-    </ng-container>
-
-    <!-- Price Column -->
-    <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
-    </ng-container>
-
-    <!-- Total price Column -->
-    <ng-container matColumnDef="total">
-      <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.total}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+  <router-outlet></router-outlet>
 </div>

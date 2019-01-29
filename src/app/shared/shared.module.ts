@@ -10,10 +10,12 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
     CoreModule,
+    ReactiveFormsModule,
     CommonModule,
     CartModule,
     ProfileModule,

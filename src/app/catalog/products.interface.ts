@@ -1,9 +1,9 @@
 export interface Product {
-  name: string;
+  title: string;
   slug: string;
-  img: string;
+  category: string;
   description: string;
-  category_id: number;
-  category_name: string;
   price: number;
+  amount: Number;
+  img_url: String;
 }
