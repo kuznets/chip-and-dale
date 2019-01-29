@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CoreModule } from '../core/core.module';
-import { ProductsModule } from '../products/products.module';
 import { CartModule } from '../cart/cart.module';
 import { ProfileModule } from '../profile/profile.module';
 import { AdminModule } from '../admin/admin.module';
@@ -16,14 +15,12 @@ import { RouterModule } from '@angular/router';
   imports: [
     CoreModule,
     CommonModule,
-    ProductsModule,
     CartModule,
     ProfileModule,
     AdminModule,
     RouterModule
   ],
   exports: [
-    ProductsModule,
     CartModule,
     ProfileModule,
     AdminModule,

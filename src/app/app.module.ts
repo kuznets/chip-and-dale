@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { ProductsModule } from './products/products.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
-import { HttpService } from './api-worker.service';
-import { FormsModule } from '@angular/forms';
+import { HttpService } from "./http.service";
+import { CatalogModule } from "./catalog/catalog.module";
 
 
 @NgModule({
@@ -22,9 +22,11 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     CoreModule,
+    CatalogModule,
     SharedModule,
-    ProductsModule,
     AppRoutingModule
+  ],
+  exports: [
   ],
   providers: [
     LocalStorageService,

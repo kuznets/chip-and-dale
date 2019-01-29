@@ -1,26 +1,25 @@
 <mat-toolbar class="nav-bar" color="primary">
   <div class="logo">
-    <a href="/">
+    <a routerLink="/">
       <img src="https://orig00.deviantart.net/2479/f/2010/355/1/d/rescue_rangers_logo_by_doctor_g-d35d5pl.png" alt="">
     </a>
   </div>
   <app-main-menu></app-main-menu>
   <app-search></app-search>
   <div class="nb-right">
+    <ng-container *ngIf="user; else authButtons">
+        Hi, <button mat-raised-button color="accent">{{ user.name }}</button>
+    </ng-container>
+    <ng-template #authButtons>
+      <button mat-button (click)="signIn()">Sing In</button>
+      <button mat-button (click)="signUp()">Sing Up</button>
+    </ng-template>
+
     <!--
     TODO ПОЧЕМУ НЕ РАБОТАЕТ?
-    <ng-container *ngIf="user; then userBlock else authButtons">
-      <ng-template #userBlock>
-        Hi, <button mat-raised-button color="accent">{{ user.name }}</button>
-      </ng-template>
-      <ng-template #authButtons>
-        <button mat-button (click)="signIn()">Sing In</button>
-        <button mat-button (click)="signUp()">Sing Up</button>
-      </ng-template>
-    </ng-container>-->
-
     <button mat-button (click)="signIn()">Sing In</button>
     <button mat-button (click)="signUp()">Sing Up</button>
+    -->
 
     <button mat-button routerLink="cart">Cart</button>
   </div>
