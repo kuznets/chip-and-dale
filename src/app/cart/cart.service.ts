@@ -4,13 +4,14 @@ import { HttpService } from '../core/http.service';
 // import { cart } from './cart.enum';
 import { Subject } from 'rxjs/Subject';
 import { CatalogService } from '../catalog/catalog.service';
-// import { Cart } from "./cart.interface";
+import { Cart } from "./cart.interface";
 
 @Injectable()
 export class CartService {
 
   public cartCount$: Subject<number> = new Subject<number>();
   // public cart: Cart[];
+  public cartData: object;
   public cartProducts: any;
   public cartID: string;
 
@@ -21,6 +22,7 @@ export class CartService {
 
   updateSubscribes(res: any) {
     this.cartProducts = res.products;
+    this.cartData = res;
     this.cartCount$.next(res.products.length);
   }
 
@@ -39,19 +41,21 @@ export class CartService {
     }
   }
 
-  addToCard(data: any) {
+  addToCard(data: Cart) {
     if (!this.cartID) {
-      const cartObject = {
-        products: [`${data._id}:1`],
-        uid: this.cartID || `${new Date().getTime()}-${new Date().getUTCDay()}`,
-        count: 1,
-        total_price: data.price,
-        description: ''
-      };
+      let user = this.lss.getItem('user'),
+          cartObject = {
+            products: [`${data._id}:1`],
+            uid: (user && user.username ? user.username : `${new Date().getTime()}-${new Date().getUTCDay()}`),
+            count: 1,
+            total_price: data.price,
+            description: ''
+          };
       this.httpService.postData('/api/cart', cartObject, {}).subscribe(
         (res: any) => {
           console.log('res', res, data);
           this.updateSubscribes(res);
+          this.cartID = res._id;
           this.lss.setItem('cart', res._id);
         },
         (err: any) => {
@@ -59,11 +63,11 @@ export class CartService {
         }
       );
     } else {
-      const cartObject = {
+      let cartObject = {
         product: data._id,
         price: data.price,
         amount_order: 1
-      };      console.log(cartObject);
+      };
 
       this.httpService.putData(`/api/cart/${this.cartID}/add`, cartObject, {}).subscribe(
         (res: any) => {
@@ -83,7 +87,7 @@ export class CartService {
   }
 
   removeFromCard(data: any) {
-    const cartObject = {
+    let cartObject = {
       product: data._id,
       price: data.price
     };
@@ -98,8 +102,36 @@ export class CartService {
     );
   }
 
-  clearCard(data: object) {
-    return this.httpService.deleteData(`/api/cart/${this.cartID}`, data);
+  updateCart(data: Cart) {
+    let cartObject = {
+      product: data._id,
+      amount_order: data.amount_order,
+      price: data.price
+    };
+
+    this.httpService.putData(`/api/cart/${this.cartID}/update`, cartObject, {}).subscribe(
+      res => {
+        this.updateSubscribes(res);
+      },
+      err => {
+        console.log(err, data);
+      }
+    );
   }
 
+  clearCart() {
+    return this.httpService.deleteData(`/api/cart/${this.cartID}`, {}).subscribe(
+      res => {
+        let data = {
+          products: []
+        };
+        this.lss.delItem('cart');
+        this.cartID = null;
+        this.updateSubscribes(data);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

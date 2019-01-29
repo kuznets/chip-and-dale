@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from './cart.interface';
-import { CartService } from './cart.service';
-import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent  {
 
   displayedColumns = ['position', 'title', 'amount', 'price', 'total', 'action'];
   public cartList: Cart[] = [];

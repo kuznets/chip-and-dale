@@ -1,7 +1,6 @@
 <div class="container">
   <h3>Create account.</h3>
-  <button mat-raised-button color="primay" (click)="signup()">Регистрация</button>
-  <form [formGroup]="regForm" (submit)="signup()" *ngIf="!spinnerShow">
+  <form [formGroup]="regForm" *ngIf="!spinnerShow" novalidate>
     <mat-form-field>
       <input matInput formControlName="username" placeholder="Username" type="text" required>
       <mat-error *ngIf="regForm.controls.username.hasError('required')">Username is empty</mat-error>
